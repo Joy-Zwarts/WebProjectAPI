@@ -1,4 +1,4 @@
-using MovieCatalog;
+using WebsiteAPI;
 using Microsoft.EntityFrameworkCore;
 
 var builder = global::Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
@@ -6,14 +6,14 @@ var builder = global::Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<MovieDb>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("MovieLab")));
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("WebsiteDb")));
 
 var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
 
-app.MapMovieEndpoints();
+app.MapProjectEndpoints();
 
 app.Run();
