@@ -1,4 +1,4 @@
-public class Movie
+public class MovieResponse
 {
     public int Id { get; set; }
     public string Title { get; set; } = string.Empty;
