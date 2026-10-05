@@ -1,9 +1,13 @@
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
-string helloworld() => "Hello, World!";
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.MapGet("/hello", helloworld);
-
+app.MapMovieEndpoints();
 
 app.Run();
