@@ -1,26 +1,38 @@
+namespace MovieCatalog;
+
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 public static class MovieEndpoints
 {
-    private static readonly List<Movie> Movies =
-    [
-        new Movie { Id = 1, Title = "Inception", Year = 2010 },
-        new Movie { Id = 2, Title = "Coraline", Year = 2009 },
-        new Movie { Id = 3, Title = "The Backrooms", Year = 2026 },
-        new Movie { Id = 4, Title = "Resident Evil", Year = 2026 }
-    ];
-
-    public static void MapMovieEndpoints(this WebApplication app)
+    public static void MapMovieEndpoints(this global::Microsoft.AspNetCore.Builder.WebApplication app)
     {
-        app.MapGet("/movies", () =>
-            Movies.Select(movie => new MovieResponse
+        app.MapGet("/movies", async (MovieDb db) =>
+            await db.Movies
+                .Select(movie => new MovieResponse
+                {
+                    Id = movie.Id,
+                    Title = movie.Title,
+                    Year = movie.Year
+                })
+                .ToListAsync());
+
+        app.MapGet("/movies/{id:int}", async (int id, MovieDb db) =>
+        {
+            var movie = await db.Movies.FindAsync(id);
+
+            if (movie is null)
+                return Results.NotFound();
+
+            return Results.Ok(new MovieResponse
             {
                 Id = movie.Id,
                 Title = movie.Title,
                 Year = movie.Year
-            }));
+            });
+        });
 
-        app.MapPost("/movies", (CreateMovieRequest request) =>
+        app.MapPost("/movies", async (CreateMovieRequest request, MovieDb db) =>
         {
             var validationResults = new List<ValidationResult>();
             var validationContext = new ValidationContext(request);
@@ -29,7 +41,7 @@ public static class MovieEndpoints
                 request,
                 validationContext,
                 validationResults,
-                validateAllProperties: true);
+                true);
 
             if (!isValid)
             {
@@ -38,12 +50,12 @@ public static class MovieEndpoints
 
             var movie = new Movie
             {
-                Id = Movies.Count + 1,
                 Title = request.Title,
                 Year = request.Year
             };
 
-            Movies.Add(movie);
+            db.Movies.Add(movie);
+            await db.SaveChangesAsync();
 
             var response = new MovieResponse
             {

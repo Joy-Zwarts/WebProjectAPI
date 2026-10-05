@@ -1,3 +1,5 @@
+namespace MovieCatalog;
+
 public class MovieResponse
 {
     public int Id { get; set; }

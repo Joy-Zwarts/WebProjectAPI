@@ -1,0 +1,12 @@
+using Microsoft.EntityFrameworkCore;
+
+namespace MovieCatalog;
+
+public class MovieDb : DbContext
+{
+    public MovieDb(DbContextOptions<MovieDb> options) : base(options)
+    {
+    }
+
+    public DbSet<Movie> Movies => Set<Movie>();
+}

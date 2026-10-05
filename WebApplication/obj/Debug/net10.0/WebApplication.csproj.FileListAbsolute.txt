@@ -167,3 +167,5 @@ C:\Users\joyzw\New folder\WebApplication\obj\Debug\net10.0\refint\WebApplication
 C:\Users\joyzw\New folder\WebApplication\obj\Debug\net10.0\WebApplication.pdb
 C:\Users\joyzw\New folder\WebApplication\obj\Debug\net10.0\WebApplication.genruntimeconfig.cache
 C:\Users\joyzw\New folder\WebApplication\obj\Debug\net10.0\ref\WebApplication.dll
+C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Npgsql.dll
+C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
