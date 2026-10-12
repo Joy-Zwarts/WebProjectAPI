@@ -15,5 +15,6 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 app.MapProjectEndpoints();
+app.MapBlogpostEndpoints();
 
 app.Run();

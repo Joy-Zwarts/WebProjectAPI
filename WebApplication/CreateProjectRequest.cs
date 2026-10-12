@@ -2,7 +2,6 @@ namespace WebsiteAPI;
 
 public class CreateProjectRequest
 {
-    public int Id { get; set; }
     public string Titel { get; set; } = string.Empty;
     public string? MediaUrl { get; set; }
     public string? MediaType { get; set; }
