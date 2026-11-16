@@ -50,7 +50,7 @@ public static class BlogpostEndpoints
             };
 
             return Results.Created($"/blogposts/{blogpost.Id}", response);
-        });
+        }).RequireAuthorization("CanEditProjects");
 
         app.MapPut("/blogposts/{id:int}", async (int id, UpdateBlogpostRequest request, AppDbContext db) =>
         {
@@ -65,7 +65,7 @@ public static class BlogpostEndpoints
             await db.SaveChangesAsync();
 
             return Results.NoContent();
-        });
+        }).RequireAuthorization("CanEditProjects");
 
         app.MapDelete("/blogposts/{id:int}", async (int id, AppDbContext db) =>
         {
@@ -78,6 +78,6 @@ public static class BlogpostEndpoints
             await db.SaveChangesAsync();
 
             return Results.NoContent();
-        });
+        }).RequireAuthorization("CanEditProjects");
     }
 }

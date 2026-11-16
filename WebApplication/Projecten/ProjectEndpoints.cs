@@ -77,8 +77,8 @@ public static class ProjectEndpoints
                 Datum = project.Datum
             };
 
-            return Results.Created($"/projects/{project.Id}", response);
-        });
+            return Results.Created($"/projects/{project.Id}", response);  
+        }).RequireAuthorization("CanEditProjects");
 
         app.MapPut("/projects/{id:int}", async (int id, UpdateProjectRequest request, AppDbContext db) =>
         {
@@ -100,8 +100,8 @@ public static class ProjectEndpoints
             await db.SaveChangesAsync();
 
             return Results.NoContent();
-        });
-
+        }).RequireAuthorization("CanEditProjects");
+        
         app.MapDelete("/projects/{id:int}", async (int id, AppDbContext db) =>
         {
             var project = await db.Projects.FindAsync(id);
@@ -113,6 +113,6 @@ public static class ProjectEndpoints
             await db.SaveChangesAsync();
 
             return Results.NoContent();
-        });
+        }).RequireAuthorization("CanEditProjects");
     }
 }
