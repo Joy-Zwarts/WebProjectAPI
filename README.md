@@ -1,62 +1,88 @@
 # WebsiteAPI
 
-Backend voor mijn portfoliosite met CRUD voor **Projects** en **Blogposts**.
+Backend API voor mijn portfoliosite met CRUD-functionaliteit voor **Projects** en **Blogposts**.
 
-Deze API is gebouwd met .NET 10 en ASP.NET Core Minimal API.
-De API gebruikt:
+## Functionaliteit
 
-- **Swagger / Swashbuckle** voor testen en documentatie
-- **EF Core** voor database-toegang
-- **PostgreSQL** als database
-- **DTO's** voor input en output
-- **Dependency Injection** via `Program.cs`
+De API bevat:
 
-De belangrijkste bestanden zijn:
+- publieke GET-routes voor projecten en blogposts;
+- registratie en login met ASP.NET Core Identity;
+- Bearer-token-authenticatie;
+- rollen `Editor` en `Admin`;
+- policy `CanEditProjects`;
+- beveiligde schrijf-routes;
+- DTO's voor request- en responsegegevens;
+- EF Core met PostgreSQL;
+- HTTP-integratietests met xUnit;
+- een aparte testdatabase voor integratietests.
 
-- `Program.cs`  
-  Start de app, registreert Swagger en de `DbContext` via dependency injection.
+## Vereisten
 
-- `AppDbContext.cs`  
-  EF Core database context met `DbSet<Project>` en `DbSet<Blogpost>`.
+- .NET 10 SDK;
+- PostgreSQL;
+- PowerShell of een andere terminal.
 
-- `ProjectEndpoints.cs`  
-  Minimal API routes voor CRUD op projecten.
+## Project starten
 
-- `BlogpostEndpoints.cs`  
-  Minimal API routes voor CRUD op blogposts.
+Start de API:
 
-- `Project.cs` en `Blogpost.cs`  
-  De EF Core entities die in de database worden opgeslagen.
+```powershell
+dotnet run
+```
 
-- `CreateProjectRequest.cs`, `UpdateProjectRequest.cs`, `ProjectResponse.cs`  
-  DTO's voor project input en output.
+De API is daarna bereikbaar via het adres dat in de terminal wordt getoond, bijvoorbeeld:
 
-- `CreateBlogpostRequest.cs`, `UpdateBlogpostRequest.cs`, `BlogpostResponse.cs`  
-  DTO's voor blogpost input en output.
+```text
+http://localhost:5224
+```
 
-## Datamodel
+Swagger staat op:
 
-### Project
+```text
+http://localhost:5224/swagger/index.html
+```
 
-Velden:
-- `Id`
-- `Titel`
-- `MediaUrl`
-- `MediaType`
-- `ThumbnailUrl`
-- `CssClass`
-- `AltText`
-- `Beschrijving`
-- `Tags`
-- `Datum`
+## PostgreSQL-databases
 
-### Blogpost
+De applicatie gebruikt de normale database:
 
-Velden:
-- `Id`
-- `Publicatiedatum`
-- `Inhoud`
+```text
+websiteapi
+```
 
-## Database setup
+De integratietests gebruiken een aparte database:
 
-Ik gebruik **PostgreSQL** als lokale database.
+```text
+websiteapi_tests
+```
+
+## Identity, gebruikers en rollen
+
+Identity wordt geregistreerd in `Program.cs` met:
+
+```csharp
+builder.Services.AddIdentityApiEndpoints<User>()
+    .AddRoles<IdentityRole>()
+    .AddEntityFrameworkStores<AppDbContext>();
+```
+
+De Identity-routes staan onder `/auth`.
+
+### Beschikbare testgebruikers
+
+De `DbSeeder` maakt de vaste gebruikers en rollen aan wanneer de API start.
+
+| Gebruiker | E-mail | Wachtwoord | Rol |
+|---|---|---|---|
+| Gewone gebruiker | `joy@example.com` | `Joy123!` | geen rol |
+| Editor | `editor@websiteapi.com` | `Editor123!` | `Editor` |
+| Admin | `admin@websiteapi.com` | `Admin123!` | `Admin` |
+
+De policy staat beide schrijversrollen toe:
+
+```csharp
+policy.RequireRole("Editor", "Admin")
+```
+
+Een gewone gebruiker is wel ingelogd, maar krijgt geen schrijfrechten.
