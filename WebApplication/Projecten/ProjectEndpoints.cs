@@ -47,6 +47,11 @@ public static class ProjectEndpoints
 
         app.MapPost("/projects", async (CreateProjectRequest request, AppDbContext db) =>
         {
+            if (string.IsNullOrWhiteSpace(request.Titel))
+            {
+                return Results.BadRequest();
+            }
+            
             var project = new Project
             {
                 Titel = request.Titel,

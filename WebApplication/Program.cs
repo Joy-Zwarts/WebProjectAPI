@@ -61,4 +61,8 @@ app.MapBlogpostEndpoints();
 
 await DbSeeder.SeedAsync(app.Services);
 
-app.Run();  
+app.Run();
+
+public partial class Program
+{
+}

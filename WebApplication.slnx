@@ -1,3 +1,6 @@
 <Solution>
+  <Folder Name="/WebApplication/">
+    <Project Path="WebApplication/WebApplication.UnitTests/WebApplication.UnitTests.csproj" />
+  </Folder>
   <Project Path="WebApplication/WebApplication.csproj" />
 </Solution>

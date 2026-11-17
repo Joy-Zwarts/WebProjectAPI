@@ -9,6 +9,7 @@ C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\WebApplication.pdb
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Azure.Core.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Azure.Identity.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Humanizer.dll
+C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Microsoft.AspNetCore.OpenApi.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Microsoft.Build.Framework.dll
@@ -40,6 +41,8 @@ C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Microsoft.SqlServer.S
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Microsoft.VisualStudio.SolutionPersistence.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Mono.TextTemplating.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Newtonsoft.Json.dll
+C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Npgsql.dll
+C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Swashbuckle.AspNetCore.Swagger.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -167,6 +170,3 @@ C:\Users\joyzw\New folder\WebApplication\obj\Debug\net10.0\refint\WebApplication
 C:\Users\joyzw\New folder\WebApplication\obj\Debug\net10.0\WebApplication.pdb
 C:\Users\joyzw\New folder\WebApplication\obj\Debug\net10.0\WebApplication.genruntimeconfig.cache
 C:\Users\joyzw\New folder\WebApplication\obj\Debug\net10.0\ref\WebApplication.dll
-C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Npgsql.dll
-C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Npgsql.EntityFrameworkCore.PostgreSQL.dll
-C:\Users\joyzw\New folder\WebApplication\bin\Debug\net10.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll

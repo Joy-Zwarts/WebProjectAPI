@@ -33,6 +33,11 @@ public static class BlogpostEndpoints
 
         app.MapPost("/blogposts", async (CreateBlogpostRequest request, AppDbContext db) =>
         {
+            if (string.IsNullOrWhiteSpace(request.Inhoud))
+            {
+                return Results.BadRequest();
+            }
+            
             var blogpost = new Blogpost
             {
                 Publicatiedatum = request.Publicatiedatum,

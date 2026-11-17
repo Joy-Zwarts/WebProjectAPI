@@ -40,5 +40,32 @@ public static class DbSeeder
         {
             await userManager.AddToRoleAsync(adminUser, adminRole);
         }
+
+        const string editorRole = "Editor";
+
+        if (!await roleManager.RoleExistsAsync(editorRole))
+        {
+            await roleManager.CreateAsync(new IdentityRole(editorRole));
+        }
+
+        var editorUser =
+            await userManager.FindByEmailAsync("editor@websiteapi.com");
+
+        if (editorUser is null)
+        {
+            editorUser = new User
+            {
+                UserName = "editor@websiteapi.com",
+                Email = "editor@websiteapi.com",
+                EmailConfirmed = true
+            };
+
+            await userManager.CreateAsync(editorUser, "Editor123!");
+        }
+
+        if (!await userManager.IsInRoleAsync(editorUser, editorRole))
+        {
+            await userManager.AddToRoleAsync(editorUser, editorRole);
+        }
     }
 }
